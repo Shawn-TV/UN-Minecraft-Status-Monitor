@@ -12,7 +12,7 @@ jobs:
   keepalive:
     runs-on: ubuntu-slim
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Record repository activity
         run: |
           date -u +%Y-%m-%dT%H:%M:%SZ > .github/status-monitor-keepalive
@@ -21,4 +21,3 @@ jobs:
           git add .github/status-monitor-keepalive
           git commit -m "chore: keep scheduled status checks active"
           git push
-

@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: "22"
       - name: Probe twice and update Better Stack
@@ -27,4 +27,3 @@ jobs:
           BETTERSTACK_API_TOKEN: ${{ secrets.BETTERSTACK_API_TOKEN }}
           BETTERSTACK_STATUS_PAGE_ID: "260427"
           SAMPLE_INTERVAL_MS: "120000"
-
