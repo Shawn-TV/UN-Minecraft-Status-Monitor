@@ -24,6 +24,9 @@ GitHub Actions runs the monitor every five minutes and takes two samples two
 minutes apart. A Better Stack team-scoped Uptime API token is stored only as the
 encrypted repository secret `BETTERSTACK_API_TOKEN`.
 
+GitHub automatically disables schedules in an inactive public repository after
+60 days. A small monthly keepalive workflow records one timestamp commit so the
+monitor does not silently stop.
+
 The existing hidden Better Stack monitors remain responsible for sending email
 only after an entry has stayed unavailable for ten minutes.
-

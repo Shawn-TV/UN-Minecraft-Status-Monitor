@@ -1,0 +1,24 @@
+name: Keep scheduled monitoring active
+
+on:
+  schedule:
+    - cron: "17 3 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-slim
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record repository activity
+        run: |
+          date -u +%Y-%m-%dT%H:%M:%SZ > .github/status-monitor-keepalive
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/status-monitor-keepalive
+          git commit -m "chore: keep scheduled status checks active"
+          git push
+
