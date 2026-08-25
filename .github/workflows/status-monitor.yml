@@ -1,0 +1,30 @@
+name: Update UN Minecraft status
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: un-minecraft-status-monitor
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Probe twice and update Better Stack
+        run: node monitor.mjs
+        env:
+          BETTERSTACK_API_TOKEN: ${{ secrets.BETTERSTACK_API_TOKEN }}
+          BETTERSTACK_STATUS_PAGE_ID: "260427"
+          SAMPLE_INTERVAL_MS: "120000"
+
