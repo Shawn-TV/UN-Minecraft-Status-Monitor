@@ -10,8 +10,8 @@ MinecraftStatus.com Java/Bedrock protocol API:
 - **Downtime:** two consecutive probes cannot obtain a valid Minecraft protocol
   response from the target.
 
-The thresholds are intentionally calibrated to the stable baseline of the
-single MinecraftStatus.com probe host rather than presented as player-side ping:
+The thresholds are intentionally calibrated to the external
+MinecraftStatus.com protocol probe rather than presented as player-side ping:
 
 | Entry | Threshold |
 | --- | ---: |
@@ -28,5 +28,7 @@ GitHub automatically disables schedules in an inactive public repository after
 60 days. A small monthly keepalive workflow records one timestamp commit so the
 monitor does not silently stop.
 
-The existing hidden Better Stack monitors remain responsible for sending email
-only after an entry has stayed unavailable for ten minutes.
+All eight Better Stack game checks are restricted to the Asia region. The four
+public monitors confirm an outage after two minutes without sending email. Four
+matching hidden monitors remain responsible for sending email only after an
+entry has stayed unavailable for ten minutes.
